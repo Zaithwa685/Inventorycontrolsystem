@@ -1,0 +1,55 @@
+My Inventory control system
+The aim of this presentation is to inform the audience of my inventory control system. 
+It will cover the instructions, setup, design and steps taken to finalize the inventory control  system.
+
+Designing the system
+Requirements gathering. This is where I define the system’s objective and functional requirements
+The system will need to tract  down the ownership details and transaction history
+Choosing the right programming language for my system is crucial hence that is why I’ve opted to use python as my programming language.
+Lastly the system should include a user interface.
+
+Database design
+It will contain the ownership details and gun information.
+It will have data normalization so that it should reduce redundancy of items or requests.
+The database will also need to be secure for protecting our customers information. 
+
+User interface design
+This will contain the different roles of users for example some users can be law enforcements or just regular people purchase a gun for safety.
+Testing will be conducted to make room for improvement.
+
+Security
+Security measures will be implemented to protect sensitive data for example encryption.
+The system will also comply  with regular regulations for firearms so that the only people buying a gun should be responsible for it.
+Regular testing will be taking place before the system is deployed so that it can be effective with zero errors. 
+
+Testing 
+The system will be integrating with relevant systems for compatibility.
+The system should address any bugs and faults that may arise to ensure effectiveness.
+
+Deployment 
+The system will eventually be deployed in a secure and controlled environment.
+Monitoring will take place to see how the system is performing and address any issues that have risen.
+
+Maintenance and updates
+The should will be regularly updated to ensure that there are no errors rising.
+User feedback will be monitored to meet user needs hence competitive advantage.
+
+Debugging
+The system should be able to perform debugging on it’s own with minimal efforts.
+Debugging should be very fast and accurate to make it convenient.
+
+Coding
+The system will require a concrete code 
+The code should run successfully without any errors.
+The code should include the right functions and 
+
+
+
+
+
+
+
+
+
+
+
