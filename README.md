@@ -20,7 +20,7 @@ The Gun Inventory Control System is designed to manage and track the inventory o
 4. Database Setup:
    - Create a new database for the system.
    - Update the database configuration.
-   - Ensure the systems does not have errors. 
+   - The systems does not have errors. 
 
 
 
