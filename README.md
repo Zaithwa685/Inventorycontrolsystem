@@ -5,7 +5,7 @@ Contents
 1. Introduction
 2. Features
 3.Installation
-4.Database setup
+
  1.Introduction
 The Gun Inventory Control System is designed to manage and track the inventory of firearms efficiently. It provides solutions for monitoring gun availability, tracking usage, and ensuring compliance with regulatory requirements.
 2.Features
@@ -15,12 +15,9 @@ The Gun Inventory Control System is designed to manage and track the inventory o
 - Notifications: Alerts for low stock, expiring licenses, and maintenance schedules.
 - Audit Tracking: Keep a record of all transactions and activities.
 3.Installation
-1.	Clone the Repository: The repository needs to be cloned so that it can be accessed without anu issues.
-2.	Conduct the actual installation process and run it.
-4. Database Setup:
-   - Create a new database for the system.
-   - Update the database configuration.
-   - The systems does not have errors. 
+-	Clone the Repository:The repository needs to be cloned so that it can be accessed without any issues.
+-	Conduct the actual installation process and run it.
+
 
 
 
