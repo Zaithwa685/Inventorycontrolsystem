@@ -1,22 +1,173 @@
 Gun inventory system
 
-This a documentation that will contain the setup instructions for my gun inventory control system. It will contain the introduction, features, installation and database setup. 
-Contents
-1. Introduction
-2. Features
-3.Installation
+This a documentation that will contain the setup instructions for my gun inventory control system. 
 
- 1.Introduction
-The Gun Inventory Control System is designed to manage and track the inventory of firearms efficiently. It provides solutions for monitoring gun availability, tracking usage, and ensuring compliance with regulatory requirements.
-2.Features
-- Inventory Management: Track the quantity and details of each firearm.
-- User Authentication: Secure access control for authorized users.
-- Reporting: Generate reports on inventory status, usage, and compliance.
-- Notifications: Alerts for low stock, expiring licenses, and maintenance schedules.
-- Audit Tracking: Keep a record of all transactions and activities.
-3.Installation
--	Clone the Repository:The repository needs to be cloned so that it can be accessed without any issues.
--	Conduct the actual installation process and run it.
+SYSTEM REQUIREMENTS
+1.	Database
+This will allow the system to store gun inventory data. It will show whether or not the gun is available and the quantity of it.
+2.	User interface
+The interface will be user friendly for users to interact with the system efficiently.
+
+SETUP STEPS
+1.	System scope
+The purpose of the system is to display guns that users will pick to use and it will show the quantity of the guns that are available.
+
+2.	Database
+This will store data for the guns available in the system and their quantity.
+
+3.	User interface
+The user interface will be written in python using Tkinter and will have a GUI framework.
+
+4.	Crud operations
+The system will contain the CREATE, READ, UPDATE AND DELETE operations for gun inventory data.
+
+5.	Testing and deploying
+The system will finally be tested and deployed as an application for users.
+THE CODE FOR THE SYSTEM
+
+ import tkinter as tk
+from tkinter import messagebox, simpledialog
+
+# Dictionary to store guns and their quantities
+guns = {
+    "M4": 10,
+    "AK-47": 15,
+    "DLQ": 5,
+    "Locus": 8
+}
+
+# Password for accessing the system
+SYSTEM_PASSWORD = "dark"
+
+def authenticate():
+    password = simpledialog.askstring("Password", "Enter the password:", show='*')
+    if password == SYSTEM_PASSWORD:
+        return True
+    else:
+        messagebox.showerror("Authentication Failed", "Incorrect password.")
+        return False
+
+def display_guns():
+    guns_listbox.delete(0, tk.END)
+    for gun, quantity in guns.items():
+        guns_listbox.insert(tk.END, f"{gun}: {quantity}")
+
+def add_gun():
+    if authenticate():
+        gun_name = entry_gun_name.get()
+        try:
+            quantity = int(entry_quantity.get())
+            if gun_name in guns:
+                guns[gun_name] += quantity
+            else:
+                guns[gun_name] = quantity
+            display_guns()
+        except ValueError:
+            messagebox.showerror("Invalid input", "Quantity must be an integer.")
+
+def update_gun():
+    if authenticate():
+        selected_gun = guns_listbox.get(tk.ACTIVE)
+        if selected_gun:
+            gun_name = selected_gun.split(":")[0].strip()
+            try:
+                quantity = int(entry_quantity.get())
+                guns[gun_name] = quantity
+                display_guns()
+            except ValueError:
+                messagebox.showerror("Invalid input", "Quantity must be an integer.")
+
+def delete_gun():
+    if authenticate():
+        selected_gun = guns_listbox.get(tk.ACTIVE)
+        if selected_gun:
+            gun_name = selected_gun.split(":")[0].strip()
+            del guns[gun_name]
+            display_guns()
+
+def pick_gun():
+    selected_gun = guns_listbox.get(tk.ACTIVE)
+    if selected_gun:
+        gun_name = selected_gun.split(":")[0].strip()
+        if guns[gun_name] > 0:
+            guns[gun_name] -= 1
+            messagebox.showinfo("Gun Picked", f"You have picked the {gun_name}.")
+            display_guns()
+        else:
+            messagebox.showwarning("Out of Stock", f"The {gun_name} is out of stock.")
+    else:
+        messagebox.showwarning("No Selection", "Please select a gun to pick.")
+
+# Create the main window
+root = tk.Tk()
+root.title("Gun Inventory Control System")
+
+# Create and place the widgets
+label_gun_name = tk.Label(root, text="Gun Name:")
+label_gun_name.grid(row=0, column=0)
+entry_gun_name = tk.Entry(root)
+entry_gun_name.grid(row=0, column=1)
+
+label_quantity = tk.Label(root, text="Quantity:")
+label_quantity.grid(row=1, column=0)
+entry_quantity = tk.Entry(root)
+entry_quantity.grid(row=1, column=1)
+
+add_button = tk.Button(root, text="Add Gun", command=add_gun)
+add_button.grid(row=2, column=0)
+
+update_button = tk.Button(root, text="Update Gun", command=update_gun)
+update_button.grid(row=2, column=1)
+
+delete_button = tk.Button(root, text="Delete Gun", command=delete_gun)
+delete_button.grid(row=2, column=2)
+
+pick_button = tk.Button(root, text="Pick Gun", command=pick_gun)
+pick_button.grid(row=2, column=3)
+
+guns_listbox = tk.Listbox(root)
+guns_listbox.grid(row=3, column=0, columnspan=4)
+
+display_guns()
+
+# Run the application
+root.mainloop()
+
+Above is the code for my gun system.
+
+Let’s now discuss the user manual
+The Gun Inventory Control System is designed to help you manage your gun inventory efficiently. This user manual will guide you through the system's features and usage.
+
+System Features
+1. Gun Inventory Management: The system allows you to add, update, and delete guns.
+2. Search and Filter: You can search for specific guns and filter the inventory.
+3. Quantity Management: The system tracks the quantity of each gun in the inventory.
+
+Getting Started
+1. Login: Log in to the system using your username and password.
+2. Main Menu: The main menu provides access to the system's features, including gun inventory management and search
+
+Gun Inventory Management
+1. Add Gun: Click the "Add Gun" button to create a new gun record. Enter the gun details, including type and quantity
+2. Update Gun: Select a gun record and click the "Update" button to modify its details.
+3. Delete Gun: Select a gun record and click the "Delete" button to remove it from the inventory.
+
+Search and Filter
+1. Search: Enter a keyword or phrase in the search bar to find specific guns.
+2. Filter: Use the filter options to narrow down the inventory based on criteria such as gun type or location.
+
+Quantity Management
+1. Quantity Tracking: The system tracks the quantity of each gun in the inventory.
+2. Low Quantity Alert: The system alerts you when the quantity of a gun reaches a certain threshold.
+
+Reports
+1. Inventory Report: Generate a report of the entire gun inventory.
+2. Gun Details Report: Generate a report of a specific gun's details.
+
+Troubleshooting
+1. Error Messages: If you encounter an error message, try restarting the system or contacting support.
+2. Data Loss: Regularly backup the database to prevent data loss in case of system failure.
+   
 
 
 
