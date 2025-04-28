@@ -9,15 +9,17 @@ guns = {
     "Locus": 8
 }
 
-# Password for accessing the system
-SYSTEM_PASSWORD = "dark"
+# Credentials for accessing the system
+USERNAME = "zaithwa"
+PASSWORD = "cr7"
 
 def authenticate():
-    password = simpledialog.askstring("Password", "Enter the password:", show='*')
-    if password == SYSTEM_PASSWORD:
+    username = simpledialog.askstring("Username", "Enter your username:", parent=root)
+    password = simpledialog.askstring("Password", "Enter your password:", show='*', parent=root)
+    if username == USERNAME and password == PASSWORD:
         return True
     else:
-        messagebox.showerror("Authentication Failed", "Incorrect password.")
+        messagebox.showerror("Authentication Failed", "Incorrect username or password.", parent=root)
         return False
 
 def display_guns():
@@ -36,7 +38,7 @@ def add_gun():
                 guns[gun_name] = quantity
             display_guns()
         except ValueError:
-            messagebox.showerror("Invalid input", "Quantity must be an integer.")
+            messagebox.showerror("Invalid input", "Quantity must be an integer.", parent=root)
 
 def update_gun():
     if authenticate():
@@ -48,7 +50,7 @@ def update_gun():
                 guns[gun_name] = quantity
                 display_guns()
             except ValueError:
-                messagebox.showerror("Invalid input", "Quantity must be an integer.")
+                messagebox.showerror("Invalid input", "Quantity must be an integer.", parent=root)
 
 def delete_gun():
     if authenticate():
@@ -64,42 +66,49 @@ def pick_gun():
         gun_name = selected_gun.split(":")[0].strip()
         if guns[gun_name] > 0:
             guns[gun_name] -= 1
-            messagebox.showinfo("Gun Picked", f"You have picked the {gun_name}.")
+            messagebox.showinfo("Gun Picked", f"You have picked the {gun_name}.", parent=root)
             display_guns()
         else:
-            messagebox.showwarning("Out of Stock", f"The {gun_name} is out of stock.")
+            messagebox.showwarning("Out of Stock", f"The {gun_name} is out of stock.", parent=root)
     else:
-        messagebox.showwarning("No Selection", "Please select a gun to pick.")
+        messagebox.showwarning("No Selection", "Please select a gun to pick.", parent=root)
 
 # Create the main window
 root = tk.Tk()
 root.title("Gun Inventory Control System")
+root.configure(bg="black")  # Set background color to black
 
-# Create and place the widgets
-label_gun_name = tk.Label(root, text="Gun Name:")
-label_gun_name.grid(row=0, column=0)
-entry_gun_name = tk.Entry(root)
-entry_gun_name.grid(row=0, column=1)
+# Configure grid rows and columns to center the widgets
+root.grid_rowconfigure(0, weight=1)
+root.grid_rowconfigure(7, weight=1)
+root.grid_columnconfigure(0, weight=1)
+root.grid_columnconfigure(3, weight=1)
 
-label_quantity = tk.Label(root, text="Quantity:")
-label_quantity.grid(row=1, column=0)
-entry_quantity = tk.Entry(root)
-entry_quantity.grid(row=1, column=1)
+# Create and place the widgets with black and white color scheme
+label_gun_name = tk.Label(root, text="Gun Name:", bg="black", fg="white")
+label_gun_name.grid(row=1, column=1, pady=5)
+entry_gun_name = tk.Entry(root, bg="white", fg="black")
+entry_gun_name.grid(row=1, column=2, pady=5)
 
-add_button = tk.Button(root, text="Add Gun", command=add_gun)
-add_button.grid(row=2, column=0)
+label_quantity = tk.Label(root, text="Quantity:", bg="black", fg="white")
+label_quantity.grid(row=2, column=1, pady=5)
+entry_quantity = tk.Entry(root, bg="white", fg="black")
+entry_quantity.grid(row=2, column=2, pady=5)
 
-update_button = tk.Button(root, text="Update Gun", command=update_gun)
-update_button.grid(row=2, column=1)
+add_button = tk.Button(root, text="Add Gun", command=add_gun, bg="white", fg="black")
+add_button.grid(row=3, column=1, pady=5)
 
-delete_button = tk.Button(root, text="Delete Gun", command=delete_gun)
-delete_button.grid(row=2, column=2)
+update_button = tk.Button(root, text="Update Gun", command=update_gun, bg="white", fg="black")
+update_button.grid(row=3, column=2, pady=5)
 
-pick_button = tk.Button(root, text="Pick Gun", command=pick_gun)
-pick_button.grid(row=2, column=3)
+delete_button = tk.Button(root, text="Delete Gun", command=delete_gun, bg="white", fg="black")
+delete_button.grid(row=4, column=1, pady=5)
 
-guns_listbox = tk.Listbox(root)
-guns_listbox.grid(row=3, column=0, columnspan=4)
+pick_button = tk.Button(root, text="Pick Gun", command=pick_gun, bg="white", fg="black")
+pick_button.grid(row=4, column=2, pady=5)
+
+guns_listbox = tk.Listbox(root, bg="white", fg="black")
+guns_listbox.grid(row=5, column=1, columnspan=2, pady=5)
 
 display_guns()
 
